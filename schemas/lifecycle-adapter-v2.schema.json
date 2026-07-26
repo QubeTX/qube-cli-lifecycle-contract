@@ -21,7 +21,7 @@
       "type":"object", "additionalProperties":false,
       "required":["version","tag","commit","obligations_sha256","schemas_sha256","fixtures_sha256","snapshots_sha256"],
       "properties": {
-        "version":{"const":"2.0.0"},
+        "version":{"const":"2.0.1"},
         "tag":{"type":"string","minLength":1},
         "commit":{"type":"string","pattern":"^[0-9a-f]{40}$"},
         "obligations_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},

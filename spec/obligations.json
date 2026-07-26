@@ -1,6 +1,6 @@
 {
   "schema": "qubetx.cli-lifecycle.obligations.v2",
-  "contract_version": "2.0.0",
+  "contract_version": "2.0.1",
   "obligations": [
     {"id":"OWN-001","level":"MUST","summary":"Enumerate every recognized owner and competing command resolution before choosing an owner.","oracle":"ownership fixtures plus product-installed inventory","fixture_required":true},
     {"id":"OWN-002","level":"MUST","summary":"Require durable owner evidence; markers and paths alone cannot authorize destructive work.","oracle":"ownership proof fixtures and adapter review","fixture_required":true},
@@ -42,4 +42,3 @@
     {"id":"TST-002","level":"MUST","summary":"The completion receipt records every mandatory case, oracle, evidence pointer, limitation, and truthful status.","oracle":"completion receipt schema and fixture","fixture_required":true}
   ]
 }
-

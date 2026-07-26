@@ -5,7 +5,7 @@ rollback, output, and uninstall behavior shared by the Qube product family. Prod
 package formats, deployment targets, and application integrations that make sense for them.
 They share one behavioral contract.
 
-Current contract: **2.0.0**.
+Current contract: **2.0.1**.
 
 ## Reference only
 

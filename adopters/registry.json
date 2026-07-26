@@ -1,6 +1,6 @@
 {
   "schema":"qubetx.cli-lifecycle.adopter-registry.v2",
-  "contract_version":"2.0.0",
+  "contract_version":"2.0.1",
   "adopters":[
     {"product_id":"wb300","profile":"adopters/wb300.json","status":"pending","target_version":"3.0.0","repository":"https://github.com/QubeTX/qube-workbranch-view","adr_url":null},
     {"product_id":"sd300","profile":"adopters/sd300.json","status":"pending","target_version":"4.0.0","repository":"https://github.com/QubeTX/qube-system-diagnostics","adr_url":null},
@@ -9,4 +9,3 @@
     {"product_id":"honk300","profile":"adopters/honk300.json","status":"pending","target_version":"2.0.0","repository":"https://github.com/QubeTX/goose","adr_url":null}
   ]
 }
-

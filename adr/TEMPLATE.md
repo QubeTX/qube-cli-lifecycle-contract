@@ -3,7 +3,7 @@
 - **Status:** Proposed | Accepted | Superseded
 - **Date:** YYYY-MM-DD
 - **Product:** <product>
-- **Contract:** `v2.0.0`
+- **Contract:** `v2.0.1`
 - **Contract commit:** `<40-character SHA>`
 - **Obligation index SHA-256:** `<hash>`
 - **Schema corpus SHA-256:** `<hash>`

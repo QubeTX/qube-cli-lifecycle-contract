@@ -150,7 +150,7 @@ def validate_terminal_snapshots() -> int:
 
 def validate_adopters() -> int:
     registry = load_json(ROOT / "adopters" / "registry.json")
-    assert registry["contract_version"] == "2.0.0"
+    assert registry["contract_version"] == (ROOT / "CONTRACT_VERSION").read_text(encoding="utf-8").strip()
     products: set[str] = set()
     for entry in registry["adopters"]:
         product = entry["product_id"]
