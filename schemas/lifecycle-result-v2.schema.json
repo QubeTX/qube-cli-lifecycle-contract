@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:qubetx:cli-lifecycle:lifecycle-result:v2",
+  "title": "Qube CLI Lifecycle Result v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "product", "action", "status", "result", "success", "changed",
+    "current_version", "target_version", "installed_version", "install_channel",
+    "ownership_before", "ownership_after", "data_policy", "phase",
+    "requires_user_action", "restart_required", "message", "recovery_url", "error",
+    "residuals", "warnings", "exit_code"
+  ],
+  "properties": {
+    "schema": {"const": "qubetx.cli-lifecycle.result.v2"},
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "command"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "name": {"type": "string", "minLength": 1},
+        "command": {"type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9._-]*$"}
+      }
+    },
+    "action": {"enum": ["install", "update", "uninstall"]},
+    "status": {"enum": ["succeeded", "no_change", "cancelled", "confirmation_required", "failed", "rolled_back", "requires_user_action", "pending_restart", "pending_handoff", "rollback_failed"]},
+    "result": {"type": ["string", "null"], "enum": ["installed", "repaired", "taken_over", "updated", "already_current", "removed", "not_installed", null]},
+    "success": {"type": "boolean"},
+    "changed": {"type": "boolean"},
+    "current_version": {"type": ["string", "null"]},
+    "target_version": {"type": ["string", "null"]},
+    "installed_version": {"type": ["string", "null"]},
+    "install_channel": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9-]*$"},
+    "ownership_before": {"enum": ["absent", "owned", "degraded", "conflict", "unmanaged", "unknown"]},
+    "ownership_after": {"enum": ["absent", "owned", "degraded", "conflict", "unmanaged", "unknown"]},
+    "data_policy": {"enum": ["preserve", "purge", "keep-data"]},
+    "phase": {"enum": ["discover", "resolve", "present", "stage", "verify_candidate", "acquire_authority", "revalidate", "apply", "reconcile", "verify_install", "cleanup", "complete"]},
+    "requires_user_action": {"type": "boolean"},
+    "restart_required": {"type": "boolean"},
+    "message": {"type": "string", "minLength": 1},
+    "recovery_url": {"type": ["string", "null"], "format": "uri"},
+    "error": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["classification", "code", "phase", "message"],
+          "properties": {
+            "classification": {"enum": ["network", "release_resolution", "integrity", "signature", "ownership_unknown", "ownership_conflict", "unmanaged_install", "unsupported_transition", "busy", "locked_process", "elevation_denied", "policy_blocked", "installer_failed", "verification_failed", "cleanup_failed", "restart_required", "handoff_failed", "rollback_failed", "internal"]},
+            "code": {"type": "string", "minLength": 1},
+            "phase": {"type": "string", "minLength": 1},
+            "message": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "residuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "identifier", "reason"],
+        "properties": {
+          "kind": {"type": "string", "minLength": 1},
+          "identifier": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "exit_code": {"type": "integer", "minimum": 0, "maximum": 4}
+  },
+  "allOf": [
+    {"if":{"properties":{"exit_code":{"const":0}}},"then":{"properties":{"status":{"enum":["succeeded","no_change"]},"success":{"const":true},"error":{"type":"null"}}}},
+    {"if":{"properties":{"exit_code":{"const":1}}},"then":{"properties":{"status":{"enum":["cancelled","confirmation_required"]},"success":{"const":false}}}},
+    {"if":{"properties":{"exit_code":{"const":2}}},"then":{"properties":{"status":{"enum":["failed","rolled_back"]},"success":{"const":false}}}},
+    {"if":{"properties":{"exit_code":{"const":3}}},"then":{"properties":{"status":{"enum":["requires_user_action","pending_restart","pending_handoff"]},"success":{"const":false}}}},
+    {"if":{"properties":{"exit_code":{"const":4}}},"then":{"properties":{"status":{"const":"rollback_failed"},"success":{"const":false}}}}
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "schema":"qubetx.cli-lifecycle.adopter-profile.v2",
+  "product_id":"nd300",
+  "product_name":"ND-300",
+  "command":"nd300",
+  "status":"pending",
+  "target_version":"4.0.0",
+  "repository":"https://github.com/QubeTX/qube-network-diagnostics",
+  "planned_adr_path":"docs/architecture-decisions.md",
+  "channels":["managed-shell","managed-powershell","msi-global","msi-corporate","exe-global","exe-corporate","mac-pkg","mac-app","cargo"],
+  "unmanaged_distributions":["portable-archive","source"],
+  "approved_profile_notes":["nd300 and speedqx aliases resolve to one owner."],
+  "contract_pin":null
+}
+

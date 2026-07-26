@@ -1,0 +1,17 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"output",
+  "cases":[
+    {"id":"OUT-TERMINAL-001","covers":["OUT-001"],"given":{"mode":"human","operation":"update-success"},"when":"render","expect":{"snapshot":"snapshots/terminal/update-success.txt","parameterized_only":true}},
+    {"id":"OUT-TERMINAL-INSTALL-001","covers":["OUT-001"],"given":{"mode":"human","operation":"install-clean"},"when":"render","expect":{"snapshot":"snapshots/terminal/install-clean.txt","parameterized_only":true}},
+    {"id":"OUT-TERMINAL-TAKEOVER-001","covers":["OUT-001"],"given":{"mode":"human","operation":"install-takeover"},"when":"render","expect":{"snapshot":"snapshots/terminal/install-takeover.txt","parameterized_only":true}},
+    {"id":"OUT-TERMINAL-KEEP-001","covers":["OUT-001"],"given":{"mode":"human","operation":"uninstall-keep-data"},"when":"render","expect":{"snapshot":"snapshots/terminal/uninstall-keep-data.txt","parameterized_only":true}},
+    {"id":"OUT-TERMINAL-CANCEL-001","covers":["OUT-001"],"given":{"mode":"human","operation":"uninstall-cancelled"},"when":"render","expect":{"snapshot":"snapshots/terminal/uninstall-cancelled.txt","parameterized_only":true}},
+    {"id":"OUT-TERMINAL-ROLLBACK-001","covers":["OUT-001"],"given":{"mode":"human","operation":"update-rolled-back"},"when":"render","expect":{"snapshot":"snapshots/terminal/update-rolled-back.txt","parameterized_only":true}},
+    {"id":"OUT-JSON-001","covers":["OUT-002"],"given":{"mode":"json","child_stdout":"progress-lines"},"when":"render","expect":{"stdout_json_objects":1,"child_output_destination":"stderr-or-captured","schema":"qubetx.cli-lifecycle.result.v2"}},
+    {"id":"OUT-EXIT-MAP-001","covers":["OUT-003"],"given":{"all_statuses":true},"when":"validate","expect":{"mapping":"spec/06-output-errors-exit-codes.md","success_only_exit_zero":true}},
+    {"id":"OUT-NO-COLOR-001","covers":["OUT-004"],"given":{"colored_snapshot":"update-success","no_color":true},"when":"render","expect":{"ansi_sequences":0,"text_delta":"ansi-only"}},
+    {"id":"OUT-VERBOSE-001","covers":["OUT-004"],"given":{"json":true,"verbose":true},"when":"render","expect":{"stdout_shape_unchanged":true,"semantic_result_unchanged":true,"extra_diagnostics":"stderr-only"}},
+    {"id":"OUT-FALSE-SUCCESS-001","covers":["OUT-005"],"given":{"helper_spawned":true,"final_verification":false},"when":"render","expect":{"success":false,"exit_code_nonzero":true}}
+  ]
+}

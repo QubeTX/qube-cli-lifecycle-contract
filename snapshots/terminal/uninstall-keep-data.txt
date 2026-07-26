@@ -1,0 +1,10 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   {{CURRENT_VERSION}} · {{INSTALL_CHANNEL}}
+  Data       keep application settings and state
+  Apply      package and integrations removed
+  Verify     no owner · no command · settings and state retained
+  Cleanup    staging and backups removed
+
+✓ Removed {{PRODUCT_NAME}} and kept its data.
+

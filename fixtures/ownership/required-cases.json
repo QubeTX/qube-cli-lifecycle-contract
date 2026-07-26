@@ -1,0 +1,16 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"ownership",
+  "cases":[
+    {"id":"OWN-ABSENT-001","covers":["OWN-001","OWN-003"],"given":{"owners":[],"command_resolutions":[]},"when":"discover","expect":{"ownership":"absent","mutation":"none"}},
+    {"id":"OWN-SINGLE-001","covers":["OWN-001","OWN-002","OWN-003"],"given":{"durable_registration":"valid","payload_identity":"valid","path":"expected","command_resolutions":["expected"]},"when":"discover","expect":{"ownership":"owned","owner_count":1}},
+    {"id":"OWN-STALE-HINT-001","covers":["OWN-002","OWN-003"],"given":{"durable_registration":"one-valid-owner","mutable_hint":"contradictory","second_owner":false},"when":"discover","expect":{"ownership":"degraded","destructive_authority":"durable-owner-only"}},
+    {"id":"OWN-CONFLICT-001","covers":["OWN-001","OWN-003","OWN-004"],"given":{"durable_owners":["owner-a","owner-b"],"command_resolutions":["owner-a","owner-b"]},"when":"plan-destructive-operation","expect":{"ownership":"conflict","status":"requires_user_action","exit_code":3,"mutation":"none","report_exact_evidence":true}},
+    {"id":"OWN-SAME-PAYLOAD-DUAL-CLAIM-001","covers":["OWN-001","OWN-004"],"given":{"durable_owners":["managed-receipt","cargo-metadata"],"payload":"same-path"},"when":"discover","expect":{"ownership":"conflict","mutation":"none"}},
+    {"id":"OWN-UNMANAGED-001","covers":["OWN-003","OWN-004"],"given":{"genuine_portable_binary":"on-command-path","durable_owner":null},"when":"plan-destructive-operation","expect":{"ownership":"unmanaged","status":"requires_user_action","exit_code":3,"mutation":"none"}},
+    {"id":"OWN-UNKNOWN-001","covers":["OWN-002","OWN-003","OWN-004"],"given":{"binary_name":"matches","product_identity":"unproven","target_path":"occupied"},"when":"plan-destructive-operation","expect":{"ownership":"unknown","mutation":"none"}},
+    {"id":"OWN-REPARSE-001","covers":["OWN-002","OWN-004"],"given":{"owner_record":"valid-looking","payload_path_type":"symlink-or-reparse","target":"outside-owned-root"},"when":"discover","expect":{"ownership":"unknown","mutation":"none","traverse_link":false}},
+    {"id":"OWN-TOCTOU-001","covers":["OWN-005"],"given":{"discovery_fingerprint":"A","precommit_fingerprint":"B"},"when":"revalidate","expect":{"status":"failed","exit_code":2,"mutation":"none","error":"verification_failed"}}
+  ]
+}
+

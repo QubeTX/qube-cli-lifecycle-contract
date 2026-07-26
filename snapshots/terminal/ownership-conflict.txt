@@ -1,0 +1,8 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+✗ {{ACTION}} stopped before making changes.
+  Multiple installation owners were found:
+  - {{OWNER_ONE}}
+  - {{OWNER_TWO}}
+  Recovery: {{RECOVERY_URL}}
+

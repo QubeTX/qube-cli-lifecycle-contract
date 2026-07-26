@@ -1,0 +1,17 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"update",
+  "cases":[
+    {"id":"UPD-CHANNEL-001","covers":["UPD-001"],"given":{"proven_channel":"msi-global","first_strategy_fails":true,"other_channels_available":true},"when":"update","expect":{"attempted_channels":["msi-global"],"cross_fallback":false,"status":"failed","exit_code":2}},
+    {"id":"UPD-CURRENT-001","covers":["UPD-002"],"given":{"ownership":"owned","health":"healthy","current_version":"2.0.0","latest_version":"2.0.0"},"when":"update","expect":{"status":"no_change","exit_code":0,"result":"already_current","changed":false}},
+    {"id":"UPD-CURRENT-DEGRADED-001","covers":["UPD-002"],"given":{"ownership":"degraded","current_version":"2.0.0","latest_version":"2.0.0","channel":"managed-shell"},"when":"update","expect":{"status":"succeeded","exit_code":0,"result":"repaired","attempted_channels":["managed-shell"]}},
+    {"id":"UPD-SUCCESS-001","covers":["UPD-003"],"given":{"current_version":"1.0.0","target_version":"2.0.0","channel":"cargo"},"when":"update","expect":{"status":"succeeded","exit_code":0,"result":"updated","installed_version":"2.0.0","durable_owner_verified":true}},
+    {"id":"UPD-INTEGRITY-001","covers":["UPD-004","UPD-005","OUT-005"],"given":{"candidate_digest":"mismatch","prior_owner":"healthy"},"when":"update","expect":{"status":"failed","exit_code":2,"error":"integrity","mutation":"none","success":false}},
+    {"id":"UPD-INSTALLER-ROLLBACK-001","covers":["UPD-004","UPD-005"],"given":{"candidate":"verified","fault":"installer-after-mutation","prior_owner":"healthy"},"when":"update","expect":{"status":"rolled_back","exit_code":2,"error":"installer_failed","prior_owner_verified":true}},
+    {"id":"UPD-LOCKED-001","covers":["UPD-004"],"given":{"product_process":"cannot-stop-safely"},"when":"update","expect":{"status":"requires_user_action","exit_code":3,"error":"locked_process","unsafe_mutation":false}},
+    {"id":"UPD-ELEVATION-001","covers":["UPD-004"],"given":{"elevation":"denied"},"when":"update","expect":{"status":"requires_user_action","exit_code":3,"error":"elevation_denied","mutation":"none"}},
+    {"id":"UPD-POLICY-001","covers":["UPD-004"],"given":{"endpoint_policy":"blocks-staging-or-launch"},"when":"update","expect":{"status":"requires_user_action","exit_code":3,"error":"policy_blocked","cross_fallback":false}},
+    {"id":"UPD-RESTART-001","covers":["UPD-004","OUT-005"],"given":{"installer_completion":"restart-required","post_version_verified":false},"when":"update","expect":{"status":"pending_restart","exit_code":3,"success":false,"restart_required":true}}
+  ]
+}
+

@@ -1,0 +1,10 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   {{CURRENT_VERSION}} · {{INSTALL_CHANNEL}}
+  Data       purge all application-owned state
+  Apply      package and integrations removed
+  Verify     no owner · no command · no application-owned state
+  Cleanup    staging and backups removed
+
+✓ Removed {{PRODUCT_NAME}}.
+

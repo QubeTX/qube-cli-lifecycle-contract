@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:qubetx:cli-lifecycle:adapter:v2",
+  "title": "Qube Product Lifecycle Adapter v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "product", "contract", "targets", "channels", "data_classes", "integrations", "processes", "exceptions"],
+  "properties": {
+    "schema": {"const": "qubetx.cli-lifecycle.adapter.v2"},
+    "product": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "command", "repository"],
+      "properties": {
+        "id": {"type":"string","pattern":"^[a-z][a-z0-9-]*$"},
+        "name": {"type":"string","minLength":1},
+        "command": {"type":"string","minLength":1},
+        "repository": {"type":"string","format":"uri"}
+      }
+    },
+    "contract": {
+      "type":"object", "additionalProperties":false,
+      "required":["version","tag","commit","obligations_sha256","schemas_sha256","fixtures_sha256","snapshots_sha256"],
+      "properties": {
+        "version":{"const":"2.0.0"},
+        "tag":{"type":"string","minLength":1},
+        "commit":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+        "obligations_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+        "schemas_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+        "fixtures_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+        "snapshots_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}
+      }
+    },
+    "targets": {"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "channels": {
+      "type":"array", "minItems":1,
+      "items": {
+        "type":"object", "additionalProperties":false,
+        "required":["id","advertised","managed","package_format","scope","targets","stable_assets","owner_proofs","legacy_owner_proofs","install_roots","registrations","integrations","verification","transitions"],
+        "properties": {
+          "id":{"type":"string","pattern":"^[a-z][a-z0-9-]*$"},
+          "advertised":{"type":"boolean"},
+          "managed":{"type":"boolean"},
+          "package_format":{"enum":["msi","inno-exe","managed-script","cargo","pkg","dmg-app","deb","archive"]},
+          "scope":{"enum":["user","system","unmanaged"]},
+          "targets":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+          "stable_assets":{"type":"array","items":{"type":"string","minLength":1}},
+          "owner_proofs":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+          "legacy_owner_proofs":{"type":"array","items":{"type":"string","minLength":1}},
+          "install_roots":{"type":"array","items":{"type":"string","minLength":1}},
+          "registrations":{"type":"array","items":{"type":"string","minLength":1}},
+          "integrations":{"type":"array","items":{"type":"string","minLength":1}},
+          "verification":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+          "transitions":{"type":"object","additionalProperties":{"enum":["repair","takeover","reject-safe","not-applicable"]}}
+        }
+      }
+    },
+    "data_classes": {
+      "type":"object", "additionalProperties":false,
+      "required":["app_owned","settings_state","external_outputs","host_shared","repository_local","ambiguous_policy"],
+      "properties": {
+        "app_owned":{"type":"array","items":{"type":"string"}},
+        "settings_state":{"type":"array","items":{"type":"string"}},
+        "external_outputs":{"type":"array","items":{"type":"string"}},
+        "host_shared":{"type":"array","items":{"type":"string"}},
+        "repository_local":{"type":"array","items":{"type":"string"}},
+        "ambiguous_policy":{"const":"never-delete"}
+      }
+    },
+    "integrations":{"type":"array","items":{"type":"string","minLength":1}},
+    "processes":{"type":"array","items":{"type":"string","minLength":1}},
+    "exceptions": {
+      "type":"array",
+      "items": {
+        "type":"object", "additionalProperties":false,
+        "required":["id","obligations","observable_difference","reason","retained_invariants","fixtures","approval","revalidate_when"],
+        "properties": {
+          "id":{"type":"string","pattern":"^[A-Z0-9-]+$"},
+          "obligations":{"type":"array","minItems":1,"items":{"type":"string","pattern":"^[A-Z]+-[0-9]{3}$"}},
+          "observable_difference":{"type":"string","minLength":1},
+          "reason":{"type":"string","minLength":1},
+          "retained_invariants":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+          "fixtures":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+          "approval":{"type":"string","minLength":1},
+          "revalidate_when":{"type":"string","minLength":1}
+        }
+      }
+    }
+  }
+}

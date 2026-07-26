@@ -1,0 +1,9 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Installed  {{CURRENT_VERSION}} · {{INSTALL_CHANNEL}}
+  Data       choose what to remove
+
+  > Remove All   program, integrations, settings, cache, and logs
+    Keep Data    program and integrations; retain settings and state
+    Cancel       nothing is removed
+

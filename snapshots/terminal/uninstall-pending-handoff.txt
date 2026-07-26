@@ -1,0 +1,9 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   {{CURRENT_VERSION}} · {{INSTALL_CHANNEL}}
+  Data       purge all application-owned state
+  Handoff    constrained cleanup helper started
+
+→ {{PRODUCT_NAME}} uninstall is finalizing after this process exits.
+  Completion is pending; removal has not been reported as successful.
+

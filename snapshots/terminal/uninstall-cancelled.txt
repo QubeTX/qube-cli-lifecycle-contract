@@ -1,0 +1,6 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Data       cancel selected
+
+— Uninstall cancelled. Nothing was changed.
+

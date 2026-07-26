@@ -1,0 +1,32 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:qubetx:cli-lifecycle:release-manifest:v2",
+  "title":"Qube Lifecycle Release Manifest v2",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","product_id","version","tag","source_commit","published_immutable","assets"],
+  "properties": {
+    "schema":{"const":"qubetx.cli-lifecycle.release-manifest.v2"},
+    "product_id":{"type":"string","pattern":"^[a-z][a-z0-9-]*$"},
+    "version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "tag":{"type":"string","pattern":"^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "source_commit":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "published_immutable":{"const":true},
+    "assets": {
+      "type":"array", "minItems":1,
+      "items": {
+        "type":"object", "additionalProperties":false,
+        "required":["name","channel","target","size","sha256","signature_required"],
+        "properties": {
+          "name":{"type":"string","minLength":1},
+          "channel":{"type":["string","null"]},
+          "target":{"type":["string","null"]},
+          "size":{"type":"integer","minimum":1},
+          "sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+          "signature_required":{"type":"boolean"}
+        }
+      }
+    }
+  }
+}
+

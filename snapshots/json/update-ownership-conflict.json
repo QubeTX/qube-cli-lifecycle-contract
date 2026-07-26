@@ -1,0 +1,29 @@
+{
+  "schema":"qubetx.cli-lifecycle.result.v2",
+  "product":{"id":"wb300","name":"WB-300","command":"wb300"},
+  "action":"update",
+  "status":"requires_user_action",
+  "result":null,
+  "success":false,
+  "changed":false,
+  "current_version":"2.0.0",
+  "target_version":null,
+  "installed_version":"2.0.0",
+  "install_channel":null,
+  "ownership_before":"conflict",
+  "ownership_after":"conflict",
+  "data_policy":"preserve",
+  "phase":"discover",
+  "requires_user_action":true,
+  "restart_required":false,
+  "message":"Update stopped before making changes because multiple installation owners were found.",
+  "recovery_url":"https://example.invalid/product/install",
+  "error":{"classification":"ownership_conflict","code":"E_OWNERSHIP_CONFLICT","phase":"discover","message":"Multiple durable owners compete for the product command."},
+  "residuals":[
+    {"kind":"owner","identifier":"owner-one","reason":"recognized owner"},
+    {"kind":"owner","identifier":"owner-two","reason":"recognized competing owner"}
+  ],
+  "warnings":[],
+  "exit_code":3
+}
+

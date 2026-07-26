@@ -1,0 +1,11 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"governance",
+  "cases":[
+    {"id":"GOV-ADR-PIN-001","covers":["GOV-001"],"given":{"product_adr":"candidate"},"when":"review","expect":{"required_pins":["contract-tag","contract-commit","schema-hashes","fixture-hash","adapter","exceptions","sibling-links","evidence"]}},
+    {"id":"GOV-INDEPENDENCE-001","covers":["GOV-002"],"given":{"product_checkout":"offline"},"when":"build-test-package","expect":{"reference_repo_fetches":0,"reference_repo_dependencies":0,"success":true}},
+    {"id":"GOV-EXCEPTION-001","covers":["GOV-003"],"given":{"exception":"candidate"},"when":"review","expect":{"required_fields":["obligations","difference","reason","retained-invariants","fixtures","approval","revalidation"],"core_safety_waived":false}},
+    {"id":"TST-EVIDENCE-LAYERS-001","covers":["TST-001"],"given":{"source_fixtures":"pass","installed_package_gate":"not-run"},"when":"complete-product","expect":{"terminal_status":"UNVERIFIED","installed_claim":false}},
+    {"id":"TST-RECEIPT-001","covers":["TST-002"],"given":{"mandatory_rows":["PASS","NOT_RUN"]},"when":"compute-terminal-status","expect":{"terminal_status":"UNVERIFIED","weakest_row_controls":true}}
+  ]
+}

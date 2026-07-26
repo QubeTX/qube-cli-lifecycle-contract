@@ -1,0 +1,14 @@
+{
+  "schema":"qubetx.cli-lifecycle.adopter-profile.v2",
+  "product_id":"honk300",
+  "product_name":"Honk300",
+  "command":"honk300",
+  "status":"pending",
+  "target_version":"2.0.0",
+  "repository":"https://github.com/QubeTX/goose",
+  "planned_adr_path":"docs/architecture-decisions.md",
+  "channels":["managed-shell","managed-powershell","msi-global","msi-corporate","exe-global","exe-corporate","debian","mac-app"],
+  "unmanaged_distributions":["portable-archive","source"],
+  "approved_profile_notes":["Retain the signed and notarized Mac app and DMG.","Do not add PKG merely for parity."],
+  "contract_pin":null
+}

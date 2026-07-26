@@ -1,0 +1,17 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"uninstall",
+  "cases":[
+    {"id":"UNI-MENU-001","covers":["UNI-001"],"given":{"tty":true,"args":[]},"when":"uninstall","expect":{"choices":["Remove All","Keep Data","Cancel"],"default":"Remove All","mutation_before_choice":false}},
+    {"id":"UNI-JSON-CONFIRM-001","covers":["UNI-001","OUT-002"],"given":{"tty":false,"args":["--json"]},"when":"uninstall","expect":{"status":"confirmation_required","exit_code":1,"stdout_json_objects":1,"stdin_reads":0,"mutation":"none"}},
+    {"id":"UNI-PURGE-001","covers":["UNI-002","UNI-005","UNI-006"],"given":{"owner":"one-proven-owner","args":["--yes"]},"when":"uninstall","expect":{"status":"succeeded","exit_code":0,"result":"removed","ownership_after":"absent","app_owned_state_after":0,"integrations_after":0,"command_resolutions_after":0}},
+    {"id":"UNI-KEEP-001","covers":["UNI-003","UNI-005","UNI-006"],"given":{"owner":"one-proven-owner","args":["--keep-data","--yes"],"settings_digest":"A"},"when":"uninstall","expect":{"status":"succeeded","exit_code":0,"result":"removed","settings_digest_after":"A","program_after":0,"integrations_after":0}},
+    {"id":"UNI-EXTERNAL-001","covers":["UNI-004"],"given":{"external_exports_digest":"A","repository_history_digest":"B","host_data_digest":"C"},"when":"uninstall-purge","expect":{"external_exports_digest_after":"A","repository_history_digest_after":"B","host_data_digest_after":"C"}},
+    {"id":"UNI-OWNER-MATCH-001","covers":["UNI-005"],"given":{"proven_owner":"msi-global-product-code-A","similar_display_entry":"product-code-B"},"when":"uninstall","expect":{"selected_uninstaller":"product-code-A","product_code_B_touched":false}},
+    {"id":"UNI-HANDOFF-001","covers":["UNI-007","OUT-005"],"given":{"running_image_requires_post_exit":true,"helper_plan":"pinned-and-validated"},"when":"uninstall","expect":{"parent_status":"pending_handoff","parent_exit_code":3,"parent_success":false,"helper_rediscovery":false,"final_installed_gate":"await-helper-and-verify"}},
+    {"id":"UNI-HANDOFF-FAIL-001","covers":["UNI-007"],"given":{"running_image_requires_post_exit":true,"helper_launch":"fails"},"when":"uninstall","expect":{"status":"failed","exit_code":2,"success":false,"installed_owner_preserved":true}},
+    {"id":"UNI-ABSENT-001","covers":["UNI-008"],"given":{"ownership":"absent","invocation":"exact-candidate-from-private-staging"},"when":"uninstall","expect":{"status":"no_change","exit_code":0,"result":"not_installed","installed_command_resolves":false}},
+    {"id":"UNI-RESIDUAL-001","covers":["UNI-006","OUT-005"],"given":{"package_removed":true,"owned_integration_cleanup":"fails"},"when":"uninstall","expect":{"status":"requires_user_action","exit_code":3,"success":false,"residuals_nonempty":true}}
+  ]
+}
+

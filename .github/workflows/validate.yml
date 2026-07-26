@@ -1,0 +1,20 @@
+name: Validate contract
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Validate contract artifacts
+        run: python3 scripts/validate.py
+      - name: Test reference model
+        run: cargo test --manifest-path reference/rust/Cargo.toml

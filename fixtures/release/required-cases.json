@@ -1,0 +1,11 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"release",
+  "cases":[
+    {"id":"REL-EXACT-TAG-001","covers":["REL-001"],"given":{"entrypoint":"versionless-latest","resolved_tag":"v2.0.0","later_latest":"v2.0.1"},"when":"download-transaction","expect":{"release_resolutions":1,"payload_tag":"v2.0.0","mixed_release_assets":false}},
+    {"id":"REL-VERIFY-001","covers":["REL-002"],"given":{"product":"expected","version":"expected","target":"expected","size":"expected","sha256":"expected","signature_required":true,"signature":"valid"},"when":"verify-candidate","expect":{"accepted":true,"checks":["product","version","target","size","sha256","signature"]}},
+    {"id":"REL-SIGNATURE-FAIL-001","covers":["REL-002"],"given":{"sha256":"expected","signature_required":true,"signature":"invalid"},"when":"verify-candidate","expect":{"accepted":false,"error":"signature","mutation":"none"}},
+    {"id":"REL-IMMUTABLE-001","covers":["REL-003"],"given":{"published_asset":"name-A","published_sha256":"A","upload_sha256":"B"},"when":"publish-same-name","expect":{"upload":"rejected","clobber":false,"required_route":"fix-forward"}}
+  ]
+}
+

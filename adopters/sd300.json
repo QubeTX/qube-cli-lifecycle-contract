@@ -1,0 +1,15 @@
+{
+  "schema":"qubetx.cli-lifecycle.adopter-profile.v2",
+  "product_id":"sd300",
+  "product_name":"SD-300",
+  "command":"sd300",
+  "status":"pending",
+  "target_version":"4.0.0",
+  "repository":"https://github.com/QubeTX/qube-system-diagnostics",
+  "planned_adr_path":"docs/architecture-decisions.md",
+  "channels":["managed-shell","managed-powershell","msi-global","msi-corporate","exe-global","exe-corporate","mac-pkg","cargo"],
+  "unmanaged_distributions":["portable-archive","source"],
+  "approved_profile_notes":["CLI and GUI are one lifecycle owner.","Native SDK remains a build implementation, not installer authority."],
+  "contract_pin":null
+}
+

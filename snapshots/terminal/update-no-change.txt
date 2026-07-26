@@ -1,0 +1,8 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   {{CURRENT_VERSION}} · {{INSTALL_CHANNEL}}
+  Resolve    {{TARGET_VERSION}} · exact tag {{TARGET_TAG}}
+  Verify     one owner · one command · installation healthy
+
+✓ {{PRODUCT_NAME}} {{CURRENT_VERSION}} is already current.
+

@@ -1,0 +1,15 @@
+{
+  "schema":"qubetx.cli-lifecycle.adopter-profile.v2",
+  "product_id":"tr300",
+  "product_name":"TR-300",
+  "command":"tr300",
+  "status":"pending",
+  "target_version":"5.0.0",
+  "repository":"https://github.com/QubeTX/qube-machine-report",
+  "planned_adr_path":"docs/architecture-decisions.md",
+  "channels":["managed-shell","managed-powershell","msi-global","msi-corporate","exe-global","exe-corporate","mac-pkg","mac-app","cargo"],
+  "unmanaged_distributions":["portable-archive","source"],
+  "approved_profile_notes":["The product-specific tr300 install command remains outside this contract.","The pre-confirmation prompt distinction remains; confirmed uninstall follows the common contract."],
+  "contract_pin":null
+}
+

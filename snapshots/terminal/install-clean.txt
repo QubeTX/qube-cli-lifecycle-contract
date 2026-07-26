@@ -1,0 +1,12 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   no existing installation
+  Resolve    {{TARGET_VERSION}} · exact tag {{TARGET_TAG}}
+  Stage      candidate downloaded and verified
+  Apply      installed through {{INSTALL_CHANNEL}}
+  Reconcile  one owner · one command
+  Verify     {{COMMAND}} {{TARGET_VERSION}}
+  Cleanup    staging and backups removed
+
+✓ Installed {{PRODUCT_NAME}} {{TARGET_VERSION}}.
+

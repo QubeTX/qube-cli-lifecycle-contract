@@ -1,0 +1,26 @@
+{
+  "schema":"qubetx.cli-lifecycle.result.v2",
+  "product":{"id":"wb300","name":"WB-300","command":"wb300"},
+  "action":"update",
+  "status":"succeeded",
+  "result":"updated",
+  "success":true,
+  "changed":true,
+  "current_version":"2.0.0",
+  "target_version":"3.0.0",
+  "installed_version":"3.0.0",
+  "install_channel":"msi-global",
+  "ownership_before":"owned",
+  "ownership_after":"owned",
+  "data_policy":"preserve",
+  "phase":"complete",
+  "requires_user_action":false,
+  "restart_required":false,
+  "message":"Updated WB-300 2.0.0 to 3.0.0.",
+  "recovery_url":null,
+  "error":null,
+  "residuals":[],
+  "warnings":[],
+  "exit_code":0
+}
+

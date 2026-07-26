@@ -1,0 +1,26 @@
+{
+  "schema":"qubetx.cli-lifecycle.result.v2",
+  "product":{"id":"wb300","name":"WB-300","command":"wb300"},
+  "action":"uninstall",
+  "status":"confirmation_required",
+  "result":null,
+  "success":false,
+  "changed":false,
+  "current_version":"3.0.0",
+  "target_version":null,
+  "installed_version":"3.0.0",
+  "install_channel":"msi-global",
+  "ownership_before":"owned",
+  "ownership_after":"owned",
+  "data_policy":"purge",
+  "phase":"present",
+  "requires_user_action":false,
+  "restart_required":false,
+  "message":"Uninstall requires --yes in JSON or noninteractive mode.",
+  "recovery_url":null,
+  "error":null,
+  "residuals":[],
+  "warnings":[],
+  "exit_code":1
+}
+

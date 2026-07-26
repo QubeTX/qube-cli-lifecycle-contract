@@ -1,0 +1,12 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   {{CURRENT_VERSION}} · {{CURRENT_CHANNEL}}
+  Resolve    {{TARGET_VERSION}} · exact tag {{TARGET_TAG}}
+  Stage      candidate downloaded and verified
+  Apply      moved ownership to {{TARGET_CHANNEL}}
+  Reconcile  obsolete owner removed · one command
+  Verify     {{COMMAND}} {{TARGET_VERSION}}
+  Cleanup    staging and backups removed
+
+✓ Replaced {{PRODUCT_NAME}} {{CURRENT_VERSION}} with {{TARGET_VERSION}} through {{TARGET_CHANNEL}}.
+

@@ -1,0 +1,12 @@
+Qube CLI Lifecycle · {{PRODUCT_NAME}}
+
+  Discover   {{CURRENT_VERSION}} · {{INSTALL_CHANNEL}}
+  Resolve    {{TARGET_VERSION}} · exact tag {{TARGET_TAG}}
+  Stage      candidate downloaded and verified
+  Apply      update failed
+  Rollback   restored {{CURRENT_VERSION}} through {{INSTALL_CHANNEL}}
+  Verify     prior owner and command are healthy
+  Cleanup    staging and backups removed
+
+✗ Update failed. {{PRODUCT_NAME}} {{CURRENT_VERSION}} was restored and verified.
+

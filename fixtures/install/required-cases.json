@@ -1,0 +1,15 @@
+{
+  "schema":"qubetx.cli-lifecycle.fixtures.v2",
+  "category":"install",
+  "cases":[
+    {"id":"INS-PLAN-001","covers":["INS-001"],"given":{"existing_version":"1.0.0","target_version":"2.0.0","channel":"managed-shell","scope":"user","data_policy":"preserve"},"when":"present","expect":{"fields":["existing_version","target_version","channel","scope","data_policy"],"mutation":"none"}},
+    {"id":"INS-STAGE-AUTHORITY-001","covers":["INS-002"],"given":{"candidate":"verified","staging":"private-randomized","lock":"available","elevation":"required"},"when":"prepare","expect":{"candidate_verified_before_elevation":true,"destructive_work_before_elevation":false}},
+    {"id":"INS-CLEAN-001","covers":["INS-003","INS-007"],"given":{"ownership":"absent"},"when":"install","expect":{"status":"succeeded","exit_code":0,"result":"installed","owners_after":1,"fresh_command_resolutions":1,"obsolete_owners":0,"backups":0,"staging":0}},
+    {"id":"INS-REPAIR-001","covers":["INS-004","INS-007"],"given":{"ownership":"degraded","version":"2.0.0","target_version":"2.0.0","channel":"same"},"when":"install","expect":{"status":"succeeded","exit_code":0,"result":"repaired","version_after":"2.0.0","owners_after":1}},
+    {"id":"INS-TAKEOVER-001","covers":["INS-005","INS-007"],"given":{"owner":"recognized-legacy","version":"1.0.0","target_version":"2.0.0","transition":"takeover"},"when":"install","expect":{"status":"succeeded","exit_code":0,"result":"taken_over","legacy_owner_after":false,"owners_after":1}},
+    {"id":"INS-TRANSITION-REJECT-001","covers":["INS-005"],"given":{"owner":"recognized-other-channel","transition":"reject-safe"},"when":"install","expect":{"status":"requires_user_action","exit_code":3,"mutation":"none","coexistence":false,"recovery_present":true}},
+    {"id":"INS-ROLLBACK-001","covers":["INS-006"],"given":{"prior_owner":"healthy","fault":"after-first-mutation","rollback_plan":"preverified"},"when":"install","expect":{"status":"rolled_back","exit_code":2,"success":false,"prior_owner_verified":true}},
+    {"id":"INS-ROLLBACK-FAIL-001","covers":["INS-006","OUT-005"],"given":{"prior_owner":"healthy","fault":"mutation-and-rollback"},"when":"install","expect":{"status":"rollback_failed","exit_code":4,"success":false,"residuals_nonempty":true}}
+  ]
+}
+
