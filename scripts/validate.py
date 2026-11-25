@@ -166,7 +166,7 @@ def validate_adopters() -> int:
             assert profile["contract_pin"], f"{product}: adopted without contract pin"
         else:
             assert profile["contract_pin"] is None, f"{product}: pending profile has a pin"
-    assert products == {"wb300", "sd300", "nd300", "tr300", "honk300"}
+    assert products == {"sd300", "nd300", "tr300", "honk300"}
     return len(products)
 
 
